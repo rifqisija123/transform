@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hasil Cek Data Tidak Lengkap</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="text-center">📋 Hasil Pemeriksaan file CSV</h1>
+        <p class="text-center fs-5">Total data tidak lengkap: <b>{{ total }}</b></p>
+        <div class="gap-2 mb-3">
+            <a href="/" class="btn btn-secondary">Kembali</a>
+        </div>
+        <div class="table-responsive shadow-lg p-3 bg-white rounded">
+            {{ table_html | safe }}
+        </div>
+    </div>
+</body>
+</html>

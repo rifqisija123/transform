@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Python</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
+</head>
+<body class="bg-light">
+    <div class="container text-center mt-5">
+        <!-- <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#cek">Cek Data Tidak Lengkap</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#transform">Transform Data</a>
+            </li>
+        </ul> -->
+
+        <div class="tab-content mt-4">
+            <div class="tab-pane fade" id="cek">
+                <h4 class="mb-4">📊 Cek Data CSV DCT DPR-RI Tidak Lengkap</h4>
+                <p class="text-muted">Unggah file CSV kamu, sistem akan memeriksa kolom dari <b>dapil_id</b> sampai <b>nomor_urut</b></p>
+                <div class="card p-4 shadow-lg">
+                    <form method="POST" action="/cek" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <input class="form-control" type="file" name="file" accept=".csv" required>
+                        </div>
+                        <button class="btn btn-primary btn-lg" type="submit">Upload & Cek</button>
+                    </form>
+                </div>
+            </div>
+            <div class="tab-pane fade show active" id="transform">
+                <h4 class="mb-4">Cleaning Data DCT DPRD Provinsi</h4>
+                <p class="text-muted">Unggah file CSV kamu, pilih provinsi lalu sistem akan transformasi data</p>
+                <div class="card p-4 shadow-lg">
+                    <form method="POST" action="/transform" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <input type="file" name="file" class="form-control" accept=".csv" required>
+                        </div>
+                        <div class="mt-4">
+                            <label class="form-label">Pilih Dapil</label>
+                            <select class="form-control" data-live-search="true" name="provinsi" required>
+                                {% for name in provinsi_list %}
+                                    <option value="{{ name }}">{{ name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-lg mt-3">Upload & Transform</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            $('select[data-live-search="true"]').selectpicker({
+                liveSearch: true,
+                liveSearchPlaceholder: 'Cari provinsi...',
+                size: 10
+            });
+        });
+    </script>
+</body>
+</html>
