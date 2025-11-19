@@ -47,7 +47,7 @@ def transform():
     file_path = os.path.join(UPLOAD_FOLDER, file.filename)
     file.save(file_path)
 
-    df_transformed = transform_data(file_path, provinsi, dapil_file=DAPIL_FILE)
+    df_transformed = transform_data(file_path, provinsi)
     output_path = os.path.join(UPLOAD_FOLDER, "transformed.csv")
     df_transformed.to_csv(output_path, index=False, encoding="utf-8-sig")
 
@@ -60,4 +60,4 @@ def download(filename):
     return send_file(os.path.join(UPLOAD_FOLDER, filename), as_attachment=True)
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5001, debug=True)
+    app.run(host="192.168.1.20", port=5001, debug=True)
